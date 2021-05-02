@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "843c644b215dd56e6bd52379fdd3d850",
+    "revision": "a260c1805f69bda18e4dda867cddc9d7",
     "url": "/Mini-Word-Tool-2/index.html"
   },
   {
