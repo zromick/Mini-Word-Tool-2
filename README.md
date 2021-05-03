@@ -18,18 +18,51 @@ Julia suspected the milk belonged to Muhammad.
 The milk was Muhammad's.
 ```
 
-Resulting Word Count:
+Words Included in Replacement:
 ```
-Jeremiah's (1). Replace with: Charles'
-Sarah (1). Replace with: Julia
-Sarah, (1). Replace with: Julia,
-Muhammad. (1). Replace with: T. K.
-Muhammad's. (1)s. Replace with: T. K.'s.
+
+JEREMIAH'S...(1)
+
+1.
+Jeremiah's -> 
+Damian's
+friend, Sarah, greeted
+
+SARAH...(1)
+
+1. Jeremiah's friend,
+Sarah, -> 
+Gina
+greeted Muhammad and
+
+MUHAMMAD...(2)
+
+1. friend, Sarah, greeted
+Muhammad -> 
+Max
+and asked him
+
+2. milk belonged to
+Muhammad. -> 
+Max.
+The milk was
+
+JULIA...(1)
+
+1. about the milk.
+Julia -> 
+Darla
+suspected the milk
+
+MUHAMMAD'S...(1)
+
+1. The milk was
+Muhammad's. -> Max's.
 ```
 
 Output Text: 
 ```
-Charles's friend, Julia, greeted T. K. and asked him about the milk.
-She suspected the milk belonged to T. K.
-The milk was T. K.'s.
+Damian's friend, Gina greeted Max and asked him about the milk.
+Darla suspected the milk belonged to Max.
+The milk was Max's.
 ```
