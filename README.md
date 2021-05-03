@@ -9,7 +9,7 @@ The basic flow is as such:
 * Write replacement words for each included word.
 * Replace the entire text with replacement words.
 
-#### Example
+#### Example:
 
 Input Text:
 ```
@@ -20,11 +20,11 @@ The milk was Muhammad's.
 
 Words Included in Replacement:
 ```
-
+<pre>
 JEREMIAH'S...(1)
 
 1.
-Jeremiah's -> 
+<b>Jeremiah's -></b>
 Damian's
 friend, Sarah, greeted
 
@@ -58,6 +58,7 @@ MUHAMMAD'S...(1)
 
 1. The milk was
 Muhammad's. -> Max's.
+</pre>
 ```
 
 Output Text: 
