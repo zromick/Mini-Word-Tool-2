@@ -14,17 +14,13 @@ The basic flow is as such:
 Input Text:
 ```
 Jeremiah's friend, Sarah, greeted Muhammad and asked him about the milk.
-Julia suspected the milk belonged to Muhammad.
-The milk was Muhammad's.
 ```
 
 Words Included in Replacement:
 ```
-<pre>
 JEREMIAH'S...(1)
 
-1.
-<b>Jeremiah's -></b>
+1. Jeremiah's ->
 Damian's
 friend, Sarah, greeted
 
@@ -32,38 +28,18 @@ SARAH...(1)
 
 1. Jeremiah's friend,
 Sarah, -> 
-Gina
+Gina,
 greeted Muhammad and
 
-MUHAMMAD...(2)
+MUHAMMAD...(1)
 
 1. friend, Sarah, greeted
 Muhammad -> 
 Max
 and asked him
-
-2. milk belonged to
-Muhammad. -> 
-Max.
-The milk was
-
-JULIA...(1)
-
-1. about the milk.
-Julia -> 
-Darla
-suspected the milk
-
-MUHAMMAD'S...(1)
-
-1. The milk was
-Muhammad's. -> Max's.
-</pre>
 ```
 
 Output Text: 
 ```
-Damian's friend, Gina greeted Max and asked him about the milk.
-Darla suspected the milk belonged to Max.
-The milk was Max's.
+Damian's friend, Gina, greeted Max and asked him about the milk.
 ```
