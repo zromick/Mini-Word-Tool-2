@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ProperNounReplace from './properNounReplace';
 import { ospd, wikiContractions } from '../commonWords'; // Official Scrabble Player's Dictionary
 import _ from 'lodash';
-import $ from 'jquery';
 import { Word } from '../models';
 
 const ProperNounReplaceContainer = () => {
@@ -11,6 +10,7 @@ const ProperNounReplaceContainer = () => {
 	// let [allWords, updateAllWords] = useState([] as Word[]);
 	let [allWordsRaw, updateAllWordsRaw] = useState([] as string[]);
 	// Paste text and sort words into "Excluded" or "Included"
+	let [copied, setCopied] = useState(false);
 	const sortWords = () => {
 		let excludedWordsTemp: Word[] = [];
 		let includedWordsTemp: Word[] = [];
@@ -55,10 +55,28 @@ const ProperNounReplaceContainer = () => {
 			// console.log('aawords raw', allWordsRaw);
 			// console.log('all words', allWords)
 			updateExcludedWords([...excludedWordsTemp]);
-			updateIncludedWords([...includedWordsTemp])
+			updateIncludedWords([...includedWordsTemp]);
 			updateAllWordsRaw([...allWordsRaw]);
 			tallyTitleTotals();
 		}
+	}
+
+	const addReplacementWord = (key: string, replacementWord: string, wordIndeces: number[]) => {
+		let includedWordsTemp = includedWords;
+		let includedWordIndex = (includedWordsTemp.map(word => Object.keys(word)[0])).indexOf(key);
+		includedWordsTemp[includedWordIndex][key]['default'] = [];
+		includedWordsTemp[includedWordIndex][key][replacementWord] = wordIndeces;
+		console.log(`add`, includedWordsTemp, includedWordIndex, key, replacementWord, wordIndeces);
+		updateIncludedWords([...includedWordsTemp]);
+	}
+
+	const updateReplacementWord = (key: string, oldReplacement: string, newReplacement: string) => {
+		let includedWordsTemp = includedWords;
+		let includedWordIndex = (includedWordsTemp.map(word => Object.keys(word)[0])).indexOf(key);
+		let replacementField = includedWordsTemp[includedWordIndex][key];
+		delete Object.assign(replacementField, { [newReplacement]: replacementField[oldReplacement] })[oldReplacement];
+		updateIncludedWords([...includedWordsTemp]);
+		console.log(`update`, includedWordsTemp, includedWordIndex, key, oldReplacement, newReplacement);
 	}
 
 	const tallyTitleTotals = () => {
@@ -122,16 +140,32 @@ const ProperNounReplaceContainer = () => {
 	}
 
 	const replaceAllIncludedWords = () => {
-		// Allow user to copy the new text to clipboard
-		const copyNewTextElement = document.getElementById("copyNewText") as HTMLInputElement;
-		if (copyNewTextElement) {
-			copyNewTextElement.disabled = false;
-			$("#copyNewText").click(function () {
-				// navigator.clipboard.writeText(modMessage + ' ' + credits)
-				// 	.then(() => { alert(`Your new text has been copied to clipboard!`) })
-				// 	.catch((error) => { alert(`Failed to copy to clipboard! ${error}`) })
-			});
-		}
+		// For each included word
+		// For each replacement word
+		// Go to the location in allIncludedWords and update the word
+		// Finally, build a string with All Included Words
+
+		let allWordsTemp = [...allWordsRaw];
+		includedWords.map((word) => {
+			Object.values(word).map((replacementValues, replacementWordIndex) => {
+				console.log(`replacementLocations, replacementWordIndex`, replacementValues, replacementWordIndex)
+				let replacementValuesList = Object.keys(replacementValues);
+				Object.values(replacementValues).map((replacementLocations, replacementValueIndex) => {
+					replacementLocations.map((location) => {
+						if (replacementValuesList[replacementValueIndex] !== 'default') {
+							allWordsTemp[location] = replacementValuesList[replacementValueIndex];
+						}
+						return null;
+					});
+					return null;
+				});
+				return null;
+			})
+			return null;
+		});
+
+		const finalTextArea = document.getElementById('finalTextArea') as HTMLTextAreaElement;
+		finalTextArea.value = _.join(allWordsTemp, ' ');
 	}
 
 	return (
@@ -145,9 +179,13 @@ const ProperNounReplaceContainer = () => {
 			handleIncludeWord={handleIncludeWord}
 			handleExcludeWord={handleExcludeWord}
 			replaceAllIncludedWords={replaceAllIncludedWords}
+			addReplacementWord={addReplacementWord}
+			updateReplacementWord={updateReplacementWord}
+			setCopied={setCopied}
 			excludedWords={excludedWords}
 			includedWords={includedWords}
 			allWordsRaw={allWordsRaw}
+			copied={copied}
 		/>
 	);
 }
