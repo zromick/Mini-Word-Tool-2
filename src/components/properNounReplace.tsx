@@ -20,10 +20,12 @@ export interface ProperNounReplaceProps {
 	addReplacementWord: (key: string, replacementWord: string, wordIndeces: number[]) => any,
 	updateReplacementWord: (key: string, oldReplacement: string, newReplacement: string) => any,
 	setCopied: Dispatch<SetStateAction<boolean>>,
+	setAutoExcludeOSPD: Dispatch<SetStateAction<boolean>>,
 	excludedWords: Word[],
 	includedWords: Word[],
 	allWordsRaw: string[];
 	copied: boolean,
+	autoExcludeOSPD: boolean,
 }
 
 const ProperNounReplace = (props: ProperNounReplaceProps) => {
@@ -40,10 +42,12 @@ const ProperNounReplace = (props: ProperNounReplaceProps) => {
 		addReplacementWord,
 		updateReplacementWord,
 		setCopied,
+		setAutoExcludeOSPD,
 		excludedWords,
 		includedWords,
 		allWordsRaw,
 		copied,
+		autoExcludeOSPD,
 	} = props;
 
 	return (
@@ -52,6 +56,8 @@ const ProperNounReplace = (props: ProperNounReplaceProps) => {
 			<PasteTextBody
 				toggleHideSection={toggleHideSection}
 				sortWords={sortWords}
+				setAutoExcludeOSPD={setAutoExcludeOSPD}
+				autoExcludeOSPD={autoExcludeOSPD}
 			/>
 			<WordManagerBody
 				toggleHideSection={toggleHideSection}

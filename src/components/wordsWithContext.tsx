@@ -80,10 +80,10 @@ const WordsWithContext = (props: WordsWithContextProps) => {
                   onClick={() => handleWordListChange(word)}
                 >
                   {wordsAreExcluded
-                    ? `Include '${wordCleaned.length > maxButtonWordLength
+                    ? `Replace '${wordCleaned.length > maxButtonWordLength
                       ? wordCleaned.substr(0, maxButtonWordLength) + '...'
                       : wordCleaned}'`
-                    : `Exclude '${wordCleaned.length > maxButtonWordLength
+                    : `Ignore '${wordCleaned.length > maxButtonWordLength
                       ? wordCleaned.substr(0, maxButtonWordLength) + '...'
                       : wordCleaned}'`
                   }

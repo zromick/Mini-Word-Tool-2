@@ -7,8 +7,8 @@ import { Word } from '../models';
 const ProperNounReplaceContainer = () => {
 	let [excludedWords, updateExcludedWords] = useState([] as Word[]);
 	let [includedWords, updateIncludedWords] = useState([] as Word[]);
-	// let [allWords, updateAllWords] = useState([] as Word[]);
 	let [allWordsRaw, updateAllWordsRaw] = useState([] as string[]);
+	let [autoExcludeOSPD, setAutoExcludeOSPD] = useState(false);
 	// Paste text and sort words into "Excluded" or "Included"
 	let [copied, setCopied] = useState(false);
 	const sortWords = () => {
@@ -26,17 +26,17 @@ const ProperNounReplaceContainer = () => {
 				// Rename keys to uppercase and without punctuation (except apostrophes)
 				let key = word.replace(/[^\w\s']/g, "").toUpperCase();
 				// If the cleaned word is in the Scrabble Dictionary, exclude
-				// If the uncleaned word contains a number, exclude
-				if (defaultExcludedWords.indexOf(key) !== -1 || /\d/.test(word)) {
+				// Removed functionality for now: If the uncleaned word contains a number, exclude (|| /\d/.test(word))
+				if (defaultExcludedWords.indexOf(key) !== -1 && autoExcludeOSPD) {
 					// If the word is a new excluded word, push it.
 					let excludedWordIndex = (excludedWordsTemp.map(word => Object.keys(word)[0])).indexOf(key);
 					if (excludedWordIndex === -1) {
-						console.log(excludedWordsTemp, excludedWordIndex, key, wordIndex);
+						// console.log(excludedWordsTemp, excludedWordIndex, key, wordIndex);
 						excludedWordsTemp.push({ [key]: { 'default': [wordIndex] } })
 					}
 					// Else give the existing key more context.
 					else {
-						console.log(excludedWordsTemp, excludedWordIndex, key, wordIndex);
+						// console.log(excludedWordsTemp, excludedWordIndex, key, wordIndex);
 						excludedWordsTemp[excludedWordIndex][key]['default'].push(wordIndex);
 					}
 				} else {
@@ -52,12 +52,9 @@ const ProperNounReplaceContainer = () => {
 				}
 				return null;
 			});
-			// console.log('aawords raw', allWordsRaw);
-			// console.log('all words', allWords)
 			updateExcludedWords([...excludedWordsTemp]);
 			updateIncludedWords([...includedWordsTemp]);
 			updateAllWordsRaw([...allWordsRaw]);
-			tallyTitleTotals();
 		}
 	}
 
@@ -66,7 +63,7 @@ const ProperNounReplaceContainer = () => {
 		let includedWordIndex = (includedWordsTemp.map(word => Object.keys(word)[0])).indexOf(key);
 		includedWordsTemp[includedWordIndex][key]['default'] = [];
 		includedWordsTemp[includedWordIndex][key][replacementWord] = wordIndeces;
-		console.log(`add`, includedWordsTemp, includedWordIndex, key, replacementWord, wordIndeces);
+		// console.log(`add`, includedWordsTemp, includedWordIndex, key, replacementWord, wordIndeces);
 		updateIncludedWords([...includedWordsTemp]);
 	}
 
@@ -76,23 +73,7 @@ const ProperNounReplaceContainer = () => {
 		let replacementField = includedWordsTemp[includedWordIndex][key];
 		delete Object.assign(replacementField, { [newReplacement]: replacementField[oldReplacement] })[oldReplacement];
 		updateIncludedWords([...includedWordsTemp]);
-		console.log(`update`, includedWordsTemp, includedWordIndex, key, oldReplacement, newReplacement);
-	}
-
-	const tallyTitleTotals = () => {
-		// Update excluded and included headers with word count
-		let excludedWordsTitle = document.getElementById('excludedWordsTitle');
-		let includedWordsTitle = document.getElementById('includedWordsTitle');
-		let wordCountTitle = document.getElementById('wordCountTitle');
-		if (excludedWordsTitle) {
-			excludedWordsTitle.innerHTML = `Words Excluded From Replacement - ${excludedWords.length} unique word(s)`;
-		}
-		if (includedWordsTitle) {
-			includedWordsTitle.innerHTML = `Words Included in Replacement - ${includedWords.length} unique word(s)`;
-		}
-		if (wordCountTitle) {
-			wordCountTitle.innerHTML = `Word Count - ${allWordsRaw.length} word(s). ${excludedWords.length + includedWords.length} unique word(s)`;
-		}
+		// console.log(`update`, includedWordsTemp, includedWordIndex, key, oldReplacement, newReplacement);
 	}
 
 	const toggleHideSection = (id: string) => {
@@ -127,7 +108,6 @@ const ProperNounReplaceContainer = () => {
 		_.pull(excludedWords, word);
 		updateExcludedWords([...excludedWords]);
 		updateIncludedWords([...includedWords]);
-		tallyTitleTotals();
 	}
 
 	// Sent into the handleWordListChange prop for wordsWithContext
@@ -136,7 +116,6 @@ const ProperNounReplaceContainer = () => {
 		_.pull(includedWords, word);
 		updateExcludedWords([...excludedWords]);
 		updateIncludedWords([...includedWords]);
-		tallyTitleTotals();
 	}
 
 	const replaceAllIncludedWords = () => {
@@ -148,7 +127,7 @@ const ProperNounReplaceContainer = () => {
 		let allWordsTemp = [...allWordsRaw];
 		includedWords.map((word) => {
 			Object.values(word).map((replacementValues, replacementWordIndex) => {
-				console.log(`replacementLocations, replacementWordIndex`, replacementValues, replacementWordIndex)
+				// console.log(`replacementLocations, replacementWordIndex`, replacementValues, replacementWordIndex)
 				let replacementValuesList = Object.keys(replacementValues);
 				Object.values(replacementValues).map((replacementLocations, replacementValueIndex) => {
 					replacementLocations.map((location) => {
@@ -182,10 +161,12 @@ const ProperNounReplaceContainer = () => {
 			addReplacementWord={addReplacementWord}
 			updateReplacementWord={updateReplacementWord}
 			setCopied={setCopied}
+			setAutoExcludeOSPD={setAutoExcludeOSPD}
 			excludedWords={excludedWords}
 			includedWords={includedWords}
 			allWordsRaw={allWordsRaw}
 			copied={copied}
+			autoExcludeOSPD={autoExcludeOSPD}
 		/>
 	);
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDownRounded';
 import styles from '../styles.module.scss';
 import WordsWithContext from './wordsWithContext';
 import { Word } from '../models';
@@ -30,40 +31,67 @@ const WordManagerBody = (props: WordManagerBodyProps) => {
     <Grid item container justify="center" xs={12}>
       <Grid item container justify="center" xs={12}>
         <div className={styles.basicMargin}>
-          <Typography variant="h5" onClick={() => toggleHideSection('wordManagerBody')}>
-            Step 2: Manage Your Words
-						</Typography>
+          <Grid container item xs={12}>
+            <Typography variant="h5" onClick={() => toggleHideSection('wordManagerBody')}>
+              Step 2: Manage Your Words
+            </Typography>
+            <ArrowDropDown onClick={() => toggleHideSection('wordManagerBody')} />
+          </Grid>
         </div>
       </Grid>
-      <Grid item container justify="center" xs={12}>
-        <div id='wordManagerBody' className={styles.wordManager}>
-          <Typography variant="body1" id='wordCountTitle'>Word Count</Typography>
-          <Typography variant="body1" id='excludedWordsTitle' onClick={() => toggleHideSection('excludedWordsBody')}>Words Excluded From Replacement</Typography>
-          <div id='excludedWordsBody'>
-            <WordsWithContext
-              words={excludedWords}
-              wordsAreExcluded={true}
-              allWordsRaw={allWordsRaw}
-              handleWordListChange={handleIncludeWord}
-              addReplacementWord={addReplacementWord}
-              updateReplacementWord={updateReplacementWord}
-            />
+      {allWordsRaw.length > 0
+        ? <Grid item container justify="center" xs={12}>
+          <div id='wordManagerBody' className={styles.wordManager}>
+            <Typography
+              variant="body1"
+              id='wordCountTitle'
+            >
+              Word Count - {allWordsRaw.length} total word(s). {excludedWords.length + includedWords.length} unique word(s).
+            </Typography>
+            <Grid container item xs={12}>
+              <Typography
+                variant="body1"
+                id='excludedWordsTitle'
+                onClick={() => toggleHideSection('excludedWordsBody')}
+              >
+                Ignoring: {excludedWords.length} unique word(s)
+              </Typography>
+              <ArrowDropDown onClick={() => toggleHideSection('excludedWordsBody')} />
+            </Grid>
+            <div id='excludedWordsBody'>
+              <WordsWithContext
+                words={excludedWords}
+                wordsAreExcluded={true}
+                allWordsRaw={allWordsRaw}
+                handleWordListChange={handleIncludeWord}
+                addReplacementWord={addReplacementWord}
+                updateReplacementWord={updateReplacementWord}
+              />
+            </div>
+            <Grid container item xs={12}>
+              <Typography
+                variant="body1"
+                id='includedWordsTitle'
+                onClick={() => toggleHideSection('includedWordsBody')}
+              >
+                Replacing: {includedWords.length} unique word(s)
+              </Typography>
+              <ArrowDropDown onClick={() => toggleHideSection('includedWordsBody')} />
+            </Grid>
+            <div id='includedWordsBody'>
+              <WordsWithContext
+                words={includedWords}
+                wordsAreExcluded={false}
+                allWordsRaw={allWordsRaw}
+                handleWordListChange={handleExcludeWord}
+                addReplacementWord={addReplacementWord}
+                updateReplacementWord={updateReplacementWord}
+              />
+            </div>
           </div>
-          <Typography variant="body1" id='includedWordsTitle' onClick={() => toggleHideSection('includedWordsBody')}>
-            Words Included in Replacement
-					</Typography>
-          <div id='includedWordsBody'>
-            <WordsWithContext
-              words={includedWords}
-              wordsAreExcluded={false}
-              allWordsRaw={allWordsRaw}
-              handleWordListChange={handleExcludeWord}
-              addReplacementWord={addReplacementWord}
-              updateReplacementWord={updateReplacementWord}
-            />
-          </div>
-        </div>
-      </Grid>
+        </Grid>
+        : <></>
+      }
     </Grid>
   );
 }

@@ -1,5 +1,12 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Grid, Typography, Button, TextareaAutosize, Snackbar } from '@material-ui/core';
+import {
+  Grid,
+  Typography,
+  Button,
+  TextareaAutosize,
+  Snackbar
+} from '@material-ui/core';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDownRounded';
 import styles from '../styles.module.scss';
 
 export interface GenerateNewTextBodyProps {
@@ -20,9 +27,12 @@ const GenerateNewTextBody = (props: GenerateNewTextBodyProps) => {
     <Grid item container justify="center" xs={12}>
       <Grid item container justify="center" xs={12}>
         <div className={styles.basicMargin}>
-          <Typography variant="h5" onClick={() => toggleHideSection('generateNewTextBody')}>
-            Step 3: Generate New Text
+          <Grid container item xs={12}>
+            <Typography variant="h5" onClick={() => toggleHideSection('generateNewTextBody')}>
+              Step 3: Generate New Text
 						</Typography>
+            <ArrowDropDown onClick={() => toggleHideSection('generateNewTextBody')} />
+          </Grid>
         </div>
       </Grid>
       <Grid item container justify="center" xs={12} id='generateNewTextBody'>
@@ -33,7 +43,7 @@ const GenerateNewTextBody = (props: GenerateNewTextBodyProps) => {
             variant="contained"
             onClick={() => replaceAllIncludedWords()}
           >
-            Replace All Included Words
+            Replace Words
 					</Button>
         </Grid>
         <Grid item container justify="center" xs={12}>

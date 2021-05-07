@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Typography, Button, TextareaAutosize, Snackbar } from '@material-ui/core';
+import { Grid, Typography, Button, TextareaAutosize } from '@material-ui/core';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDownRounded';
 import styles from '../styles.module.scss';
 
 export interface ImportExportBodyProps {
@@ -18,9 +19,12 @@ const ImportExportBody = (props: ImportExportBodyProps) => {
     <Grid item container justify="center" xs={12}>
       <Grid item container justify="center" xs={12}>
         <div className={styles.basicMargin}>
-          <Typography variant="h5" onClick={() => toggleHideSection('importExportBody')}>
-            Step 4: Import/Export
+          <Grid container item xs={12}>
+            <Typography variant="h5" onClick={() => toggleHideSection('importExportBody')}>
+              Step 4: Import/Export
 						</Typography>
+            <ArrowDropDown onClick={() => toggleHideSection('importExportBody')} />
+          </Grid>
         </div>
         <Grid item container justify="center" xs={12}>
           <div id='importExportBody' style={{ display: "none" }} className={styles.basicMargin}>
