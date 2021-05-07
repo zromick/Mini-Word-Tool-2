@@ -14,12 +14,16 @@ The basic flow is as such:
 * Click "replace words" to change the text.
 
 ## Workflow Example 
-### Ignore Words in the OSPD to Change Names Throughout A Text
+### Change Names Throughout A Text
 
-Input Text:
+#### 1. Add Input Text:
 ```
 Jeremiah's friend, Sarah, greeted Muhammad and asked him about the milk.
 ```
+
+#### 2. Check the box next to "Automatically Ignore Words in the Official Scrabble Player's Dictionary."
+
+#### 3. Click the "+" icon next to each word to create a replacement word.
 
 Word Count - 11 total word(s). 11 unique word(s).
 
@@ -48,6 +52,8 @@ Muhammad ->
 Max
 and asked him
 ```
+
+#### 4. Click "Replace Words in Text" to generate output text.
 
 Output Text: 
 ```
