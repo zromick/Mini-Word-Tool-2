@@ -11,6 +11,9 @@ const TitleBody = () => {
         <Typography>An Experimental Word Replacement Tool By <a href="https://github.com/zromick">Zac Romick</a></Typography>
       </Grid>
       <Grid item container justify="center" xs={12}>
+        <Typography>What is this useful for? <a href="https://github.com/zromick/Mini-Word-Tool-2/tree/master">Read the documentation!</a></Typography>
+      </Grid>
+      <Grid item container justify="center" xs={12}>
         <Typography>Suggestions? Please send me an email: <a href="mailto:zachary.romick@vanderbilt.edu">zachary.romick@vanderbilt.edu</a></Typography>
       </Grid>
     </Grid>

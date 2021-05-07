@@ -50,7 +50,7 @@ const PasteTextBody = (props: PasteTextBodyProps) => {
                   color="primary"
                 />
               }
-              label="Automatically Ignore Words in the Official Scrabble Player's Dictionary"
+              label="Automatically Ignore Words in the Official Scrabble Players Dictionary"
             />
           </div>
         </Grid>

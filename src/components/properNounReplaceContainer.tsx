@@ -126,8 +126,7 @@ const ProperNounReplaceContainer = () => {
 
 		let allWordsTemp = [...allWordsRaw];
 		includedWords.map((word) => {
-			Object.values(word).map((replacementValues, replacementWordIndex) => {
-				// console.log(`replacementLocations, replacementWordIndex`, replacementValues, replacementWordIndex)
+			Object.values(word).map((replacementValues) => {
 				let replacementValuesList = Object.keys(replacementValues);
 				Object.values(replacementValues).map((replacementLocations, replacementValueIndex) => {
 					replacementLocations.map((location) => {

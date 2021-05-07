@@ -43,7 +43,7 @@ const GenerateNewTextBody = (props: GenerateNewTextBodyProps) => {
             variant="contained"
             onClick={() => replaceAllIncludedWords()}
           >
-            Replace Words
+            Replace Words in Text
 					</Button>
         </Grid>
         <Grid item container justify="center" xs={12}>
