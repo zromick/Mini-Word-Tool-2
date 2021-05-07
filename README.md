@@ -1,13 +1,17 @@
 ## Mini Word Tool 2
 
-This application was created to help writers identify and replace multiple proper nouns at once.
-Users can keep track of their changes by exporting/importing words and their replacements.
+This application was created to help writers:
+* Check word-count easily.
+* Visualize word frequency by providing every context in which each word appears.
+* Spice up vocabulary.
+* Identify and fix spelling errors by comparing text with the Official Scrabble Players Dictionary.
+* Identify and change proper nouns by comparing text with the Official Scrabble Players Dictionary.
 
 The basic flow is as such:
-* Paste the input text.
-* Choose whether to include or exclude words in the replacement.
-* Write replacement words for each included word.
-* Replace the entire text with replacement words.
+* Write or paste input text.
+* Choose whether to automatically ignore words in the Official Scrabble Players Dictionary.
+* Click the "+" icon below a word to add a replacement for it.
+* Click "replace words" to change the text.
 
 #### Example:
 
