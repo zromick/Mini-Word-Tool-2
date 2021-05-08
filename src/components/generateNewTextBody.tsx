@@ -10,8 +10,8 @@ import ArrowDropDown from '@material-ui/icons/ArrowDropDownRounded';
 import styles from '../styles.module.scss';
 
 export interface GenerateNewTextBodyProps {
-  toggleHideSection: (id: string) => any,
-  replaceAllIncludedWords: () => any,
+  toggleHideSection: (id: string) => void,
+  replaceAllIncludedWords: () => void,
   setCopied: Dispatch<SetStateAction<boolean>>,
   copied: boolean,
 }

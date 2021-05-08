@@ -9,9 +9,9 @@ export interface WordsWithContextProps {
   words: Word[],
   wordsAreExcluded: boolean,
   allWordsRaw: string[],
-  handleWordListChange: (word: Word) => any,
-  addReplacementWord: (key: string, replacementWord: string, wordIndeces: number[]) => any,
-  updateReplacementWord: (key: string, oldReplacement: string, newReplacement: string) => any,
+  handleWordListChange: (word: Word) => void,
+  addReplacementWord: (key: string, replacementWord: string, wordIndeces: number[]) => void,
+  updateReplacementWord: (key: string, oldReplacement: string, newReplacement: string) => void,
 }
 
 const WordsWithContext = (props: WordsWithContextProps) => {
@@ -55,7 +55,9 @@ const WordsWithContext = (props: WordsWithContextProps) => {
                   : <Tooltip title="Add a replacement word">
                     <IconButton
                       onClick={() => addReplacementWord(wordCleaned, 'replacement', Object.values(word[wordCleaned])[replacementIndex])}
-                      color="primary">
+                      color="primary"
+                      disabled={Object.keys(word[wordCleaned]).length > 1}
+                    >
                       <Add />
                     </IconButton>
                   </Tooltip>
@@ -72,7 +74,7 @@ const WordsWithContext = (props: WordsWithContextProps) => {
                 />
               </Grid>
               <Grid item xs={1}></Grid>
-              {/* INCLUDE/EXCLUDE BUTTON */}
+              {/* REPLACE/IGNORE BUTTON */}
               <Grid item xs={3}>
                 <Button
                   fullWidth

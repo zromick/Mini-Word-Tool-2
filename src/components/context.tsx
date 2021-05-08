@@ -8,7 +8,7 @@ export interface ContextProps {
   replacementWord: string | null,
   contextIndeces: number[],
   allWordsRaw: string[],
-  updateReplacementWord: (key: string, oldReplacement: string, newReplacement: string) => any,
+  updateReplacementWord: (key: string, oldReplacement: string, newReplacement: string) => void,
 }
 
 const CONTEXT_BOUNDS_LENGTH = 3; // Grab this many words from the left and right
@@ -37,16 +37,20 @@ const Context = (props: ContextProps) => {
       }
       contextList.push(
         <Typography key={'key' + indexThatWordAppears} style={{ wordBreak: 'break-all' }}>
-          {`${mappingIndex + 1}. `}{_.join(contextBuildingArrayFirstHalf, ' ')}
-          {replacementWord === null
-            ? <b>{` ${allWordsRaw[indexThatWordAppears]} `}</b>
-            : <div><b>{`${allWordsRaw[indexThatWordAppears]} -> `}</b>
+          {(replacementWord !== null && mappingIndex === 0)
+            ? <div>{`${allWordsRaw[indexThatWordAppears]} -> `}
               <Input
                 color="primary"
                 defaultValue={replacementWord}
                 onChange={(event) => updateReplacementWord(wordCleaned, replacementWord, event.target.value)}
               />
             </div>
+            : <></>
+          }
+          {`${mappingIndex + 1}. `}{_.join(contextBuildingArrayFirstHalf, ' ')}
+          {replacementWord === null
+            ? <b>{` ${allWordsRaw[indexThatWordAppears]} `}</b>
+            : <b>{` ${replacementWord} `}</b>
           }
           {_.join(contextBuildingArraySecondHalf, ' ')}
         </Typography>

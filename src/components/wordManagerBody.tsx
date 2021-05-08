@@ -6,11 +6,11 @@ import WordsWithContext from './wordsWithContext';
 import { Word } from '../models';
 
 export interface WordManagerBodyProps {
-  toggleHideSection: (id: string) => any,
-  handleIncludeWord: (word: Word) => any,
-  handleExcludeWord: (word: Word) => any,
-  addReplacementWord: (key: string, replacementWord: string, wordIndeces: number[]) => any,
-  updateReplacementWord: (key: string, oldReplacement: string, newReplacement: string) => any,
+  toggleHideSection: (id: string) => void,
+  handleIncludeWord: (word: Word) => void,
+  handleExcludeWord: (word: Word) => void,
+  addReplacementWord: (key: string, replacementWord: string, wordIndeces: number[]) => void,
+  updateReplacementWord: (key: string, oldReplacement: string, newReplacement: string) => void,
   excludedWords: Word[],
   includedWords: Word[],
   allWordsRaw: string[],
