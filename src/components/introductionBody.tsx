@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Grid,
   Typography,
+  // Button,
 } from '@material-ui/core';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDownRounded';
 import styles from '../styles.module.scss';
@@ -35,7 +36,14 @@ const IntroductionBody = (props: introductionBodyProps) => {
         <Grid item xs={12}>
           <div className={styles.introSpacing}>
             <Typography variant="body1" >
-              This app attempts to solve the following problem: Is there an easier way to mask the identities of real people or places in a given text without laboriously using find and replace?
+              This app attempts to solve the following problem:
+            </Typography>
+          </div>
+        </Grid>
+        <Grid item xs={12}>
+          <div className={styles.introSpacing}>
+            <Typography variant="body1" style={{ fontWeight: 600 }}>
+              Is there an easier way to mask the identities of real people or places in a given text without laboriously using find and replace?
             </Typography>
           </div>
         </Grid>
@@ -63,7 +71,7 @@ const IntroductionBody = (props: introductionBodyProps) => {
         <Grid item xs={12}>
           <div className={styles.introSpacing}>
             <Typography variant="body1" >
-              - Word frequency visualization by showing context surrounding words.
+              - Word frequency visualization by showing context around other words.
             </Typography>
           </div>
         </Grid>
@@ -88,6 +96,61 @@ const IntroductionBody = (props: introductionBodyProps) => {
             </Typography>
           </div>
         </Grid>
+        {/* <Grid item xs={12}>
+          <div className={styles.introSpacing}>
+            <Typography variant="body1" >
+              Try replacing names in the following samples:
+            </Typography>
+          </div>
+        </Grid>
+        <Grid item xs={12}>
+          <div className={styles.introSpacing}>
+            <Typography variant="body1" >
+              (1) Excerpt from "We Didn't Start the Fire" by Billy Joel
+            </Typography>
+          </div>
+        </Grid>
+        <Grid item xs={12}>
+          <div className={styles.introSpacing}>
+            <Typography variant="body1" >
+              (2) Excerpt from "We Didn't Start the Fire" by Billy Joel
+            </Typography>
+          </div>
+        </Grid>
+        <Grid item xs={12}>
+          <div className={styles.introSpacing}>
+            <Typography variant="body1" >
+              (3) Excerpt from "We Didn't Start the Fire" by Billy Joel
+            </Typography>
+          </div>
+        </Grid>
+        <Grid item justify="space-between" xs={12}>
+          <div className={styles.introSpacing}>
+            <Grid container justify="space-between" xs={12}>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => null}
+              >
+                Sample 1
+              </Button>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => null}
+              >
+                Sample 2
+              </Button>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => null}
+              >
+                Sample 3
+              </Button>
+            </Grid>
+          </div>
+        </Grid> */}
       </Grid>
     </Grid>
   );
