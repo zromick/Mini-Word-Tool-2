@@ -50,11 +50,16 @@ const WordManagerBody = (props: WordManagerBodyProps) => {
             </Typography>
             <Grid container item xs={12}>
               <Typography
-                variant="body1"
-                id='excludedWordsTitle'
+                style={{ fontWeight: 600 }}
                 onClick={() => toggleHideSection('excludedWordsBody')}
               >
-                Ignoring: {excludedWords.length} unique word(s)
+                {`Ignoring...`}
+              </Typography>
+              <Typography
+                variant="body1"
+                onClick={() => toggleHideSection('excludedWordsBody')}
+              >
+                {`\t ${excludedWords.length} unique word(s)`}
               </Typography>
               <ArrowDropDown onClick={() => toggleHideSection('excludedWordsBody')} />
             </Grid>
@@ -70,11 +75,16 @@ const WordManagerBody = (props: WordManagerBodyProps) => {
             </div>
             <Grid container item xs={12}>
               <Typography
-                variant="body1"
-                id='includedWordsTitle'
+                style={{ fontWeight: 600 }}
                 onClick={() => toggleHideSection('includedWordsBody')}
               >
-                Replacing: {includedWords.length} unique word(s)
+                {`Replacing...`}
+              </Typography>
+              <Typography
+                variant="body1"
+                onClick={() => toggleHideSection('includedWordsBody')}
+              >
+                {includedWords.length} unique word(s)
               </Typography>
               <ArrowDropDown onClick={() => toggleHideSection('includedWordsBody')} />
             </Grid>

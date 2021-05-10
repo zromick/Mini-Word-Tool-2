@@ -38,7 +38,7 @@ const Context = (props: ContextProps) => {
       contextList.push(
         <Typography key={'key' + indexThatWordAppears} style={{ wordBreak: 'break-all' }}>
           {(replacementWord !== null && mappingIndex === 0)
-            ? <div>{`${allWordsRaw[indexThatWordAppears]} -> `}
+            ? <div>{`${wordCleaned} -> `}
               <Input
                 color="primary"
                 defaultValue={replacementWord}

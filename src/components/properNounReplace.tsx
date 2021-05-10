@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { Grid } from '@material-ui/core';
 import { Word } from '../models';
 import TitleBody from './titleBody';
+import IntroductionBody from './introductionBody';
 import PasteTextBody from './pasteTextBody';
 import WordManagerBody from './wordManagerBody';
 import GenerateNewTextBody from './generateNewTextBody';
@@ -53,6 +54,9 @@ const ProperNounReplace = (props: ProperNounReplaceProps) => {
 	return (
 		<Grid container justify="center">
 			<TitleBody />
+			<IntroductionBody
+				toggleHideSection={toggleHideSection}
+			/>
 			<PasteTextBody
 				toggleHideSection={toggleHideSection}
 				sortWords={sortWords}
