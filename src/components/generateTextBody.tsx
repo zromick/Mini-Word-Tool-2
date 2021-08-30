@@ -6,19 +6,16 @@ import {
   TextareaAutosize,
   Snackbar
 } from '@material-ui/core';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDownRounded';
 import styles from '../styles.module.scss';
 
-export interface GenerateNewTextBodyProps {
-  toggleHideSection: (id: string) => void,
+export interface GenerateTextBodyProps {
   replaceAllIncludedWords: () => void,
   setCopied: Dispatch<SetStateAction<boolean>>,
   copied: boolean,
 }
 
-const GenerateNewTextBody = (props: GenerateNewTextBodyProps) => {
+const GenerateTextBody = (props: GenerateTextBodyProps) => {
   const {
-    toggleHideSection,
     replaceAllIncludedWords,
     setCopied,
     copied,
@@ -28,14 +25,13 @@ const GenerateNewTextBody = (props: GenerateNewTextBodyProps) => {
       <Grid item container justify="center" xs={12}>
         <div className={styles.basicMargin}>
           <Grid container item xs={12}>
-            <Typography variant="h5" onClick={() => toggleHideSection('generateNewTextBody')}>
+            <Typography variant="h5">
               Step 3: Generate New Text
-						</Typography>
-            <ArrowDropDown onClick={() => toggleHideSection('generateNewTextBody')} />
+            </Typography>
           </Grid>
         </div>
       </Grid>
-      <Grid item container justify="center" xs={12} id='generateNewTextBody'>
+      <Grid item container justify="center" xs={12} id='GenerateTextBody'>
         <Grid item container justify="center" xs={12}>
           <Button
             className={styles.basicMargin}
@@ -44,7 +40,7 @@ const GenerateNewTextBody = (props: GenerateNewTextBodyProps) => {
             onClick={() => replaceAllIncludedWords()}
           >
             Replace Words in Text
-					</Button>
+          </Button>
         </Grid>
         <Grid item container justify="center" xs={12}>
           <TextareaAutosize
@@ -67,7 +63,7 @@ const GenerateNewTextBody = (props: GenerateNewTextBodyProps) => {
             }}
           >
             Copy New Text
-						</Button>
+          </Button>
           <Snackbar
             open={copied}
             autoHideDuration={10000}
@@ -80,4 +76,4 @@ const GenerateNewTextBody = (props: GenerateNewTextBodyProps) => {
   );
 }
 
-export default GenerateNewTextBody;
+export default GenerateTextBody;

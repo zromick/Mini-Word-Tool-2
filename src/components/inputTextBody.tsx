@@ -6,27 +6,28 @@ import {
   FormControlLabel,
   Checkbox
 } from '@material-ui/core';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDownRounded';
 import styles from '../styles.module.scss';
 
-export interface PasteTextBodyProps {
-  toggleHideSection: (id: string) => void,
+export interface InputTextBodyProps {
   sortWords: () => void,
   setAutoExcludeOSPD: Dispatch<SetStateAction<boolean>>,
   autoExcludeOSPD: boolean,
 }
 
-const PasteTextBody = (props: PasteTextBodyProps) => {
-  const { toggleHideSection, sortWords, setAutoExcludeOSPD, autoExcludeOSPD } = props;
+const InputTextBody = (props: InputTextBodyProps) => {
+  const {
+    sortWords,
+    setAutoExcludeOSPD,
+    autoExcludeOSPD }
+    = props;
   return (
     <Grid item container justify="center" xs={12}>
       <Grid item container justify="center" xs={12}>
         <div className={styles.basicMargin}>
           <Grid container item xs={12}>
-            <Typography variant="h5" onClick={() => toggleHideSection('pasteTextBody')}>
+            <Typography variant="h5">
               Step 1: Begin Typing Here
             </Typography>
-            <ArrowDropDown onClick={() => toggleHideSection('pasteTextBody')} />
           </Grid>
         </div>
       </Grid>
@@ -59,4 +60,4 @@ const PasteTextBody = (props: PasteTextBodyProps) => {
   );
 }
 
-export default PasteTextBody;
+export default InputTextBody;

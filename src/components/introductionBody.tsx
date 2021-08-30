@@ -4,24 +4,17 @@ import {
   Typography,
   // Button,
 } from '@material-ui/core';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDownRounded';
 import styles from '../styles.module.scss';
 
-export interface introductionBodyProps {
-  toggleHideSection: (id: string) => void,
-}
-
-const IntroductionBody = (props: introductionBodyProps) => {
-  const { toggleHideSection } = props;
+const IntroductionBody = () => {
   return (
     <Grid item container justify="center" xs={12}>
       <Grid item container justify="center" xs={12}>
         <div className={styles.basicMargin}>
           <Grid container item xs={12}>
-            <Typography variant="h5" onClick={() => toggleHideSection('introductionBody')}>
+            <Typography variant="h5">
               Introduction
             </Typography>
-            <ArrowDropDown onClick={() => toggleHideSection('introductionBody')} />
           </Grid>
         </div>
       </Grid>

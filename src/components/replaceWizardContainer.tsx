@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import ProperNounReplace from './properNounReplace';
+import ReplaceWizard from './replaceWizard';
 import { ospd, wikiContractions } from '../commonWords'; // Official Scrabble Player's Dictionary
 import _ from 'lodash';
 import { Word } from '../models';
 
-const ProperNounReplaceContainer = () => {
+const ReplaceWizardContainer = () => {
 	let [excludedWords, updateExcludedWords] = useState([] as Word[]);
 	let [includedWords, updateIncludedWords] = useState([] as Word[]);
 	let [allWordsRaw, updateAllWordsRaw] = useState([] as string[]);
 	let [autoExcludeOSPD, setAutoExcludeOSPD] = useState(false);
 	// Paste text and sort words into "Excluded" or "Included"
 	let [copied, setCopied] = useState(false);
+	let [currentStep, setCurrentStep] = useState(0);
+	let [nextDisabled, setNextDisabled] = useState(false);
+	let [previousDisabled, setPreviousDisabled] = useState(true);
 	const sortWords = () => {
 		let excludedWordsTemp: Word[] = [];
 		let includedWordsTemp: Word[] = [];
@@ -86,6 +89,37 @@ const ProperNounReplaceContainer = () => {
 		}
 	}
 
+	const handleNext = () => {
+		setCurrentStep(currentStep + 1);
+		if (previousDisabled) {
+			setPreviousDisabled(false);
+		}
+		if (currentStep === 2) {
+			setNextDisabled(true);
+		}
+	}
+
+	const handlePrevious = () => {
+		setCurrentStep(currentStep - 1);
+		if (currentStep - 1 === 0) {
+			setPreviousDisabled(true);
+		}
+		if (nextDisabled) {
+			setNextDisabled(false);
+		}
+	}
+
+	const handleCancel = () => {
+		setCurrentStep(0);
+		setPreviousDisabled(true);
+		setNextDisabled(false);
+		updateExcludedWords([]);
+		updateIncludedWords([]);
+		updateAllWordsRaw([]);
+		setAutoExcludeOSPD(false);
+		setCopied(false);
+	}
+
 	const handleImport = () => {
 		// Todo
 	}
@@ -147,7 +181,7 @@ const ProperNounReplaceContainer = () => {
 	}
 
 	return (
-		<ProperNounReplace
+		<ReplaceWizard
 			toggleHideSection={toggleHideSection}
 			sortWords={sortWords}
 			sortByFrequency={sortByFrequency}
@@ -161,6 +195,12 @@ const ProperNounReplaceContainer = () => {
 			updateReplacementWord={updateReplacementWord}
 			setCopied={setCopied}
 			setAutoExcludeOSPD={setAutoExcludeOSPD}
+			handleNext={handleNext}
+			handlePrevious={handlePrevious}
+			handleCancel={handleCancel}
+			nextDisabled={nextDisabled}
+			previousDisabled={previousDisabled}
+			currentStep={currentStep}
 			excludedWords={excludedWords}
 			includedWords={includedWords}
 			allWordsRaw={allWordsRaw}
@@ -170,4 +210,4 @@ const ProperNounReplaceContainer = () => {
 	);
 }
 
-export default ProperNounReplaceContainer;
+export default ReplaceWizardContainer;

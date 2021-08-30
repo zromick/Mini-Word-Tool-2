@@ -1,0 +1,31 @@
+// CSS for Multiple Steps
+
+.progressBar {
+  position: relative;
+  padding: none;
+  border-width: 0px;
+  margin-top: 10px;
+}
+
+.components {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.cancelButton {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.buttonFlex {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttonMargin {
+  margin-right: 5px;
+}

@@ -1,12 +1,12 @@
 import React from 'react';
-import ProperNounReplaceContainer from './components/properNounReplaceContainer';
+import ReplaceWizardContainer from './components/replaceWizardContainer';
 
 class App extends React.Component {
 
 	render() {
 		return (
 			<div>
-				<ProperNounReplaceContainer />
+				<ReplaceWizardContainer />
 			</div>
 		);
 	}

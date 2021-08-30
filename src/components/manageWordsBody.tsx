@@ -5,7 +5,7 @@ import styles from '../styles.module.scss';
 import WordsWithContext from './wordsWithContext';
 import { Word } from '../models';
 
-export interface WordManagerBodyProps {
+export interface ManageWordsBodyProps {
   toggleHideSection: (id: string) => void,
   handleIncludeWord: (word: Word) => void,
   handleExcludeWord: (word: Word) => void,
@@ -16,7 +16,7 @@ export interface WordManagerBodyProps {
   allWordsRaw: string[],
 }
 
-const WordManagerBody = (props: WordManagerBodyProps) => {
+const ManageWordsBody = (props: ManageWordsBodyProps) => {
   const {
     toggleHideSection,
     handleExcludeWord,
@@ -32,16 +32,16 @@ const WordManagerBody = (props: WordManagerBodyProps) => {
       <Grid item container justify="center" xs={12}>
         <div className={styles.basicMargin}>
           <Grid container item xs={12}>
-            <Typography variant="h5" onClick={() => toggleHideSection('wordManagerBody')}>
+            <Typography variant="h5" onClick={() => toggleHideSection('ManageWordsBody')}>
               Step 2: Manage Your Words
             </Typography>
-            <ArrowDropDown onClick={() => toggleHideSection('wordManagerBody')} />
+            <ArrowDropDown onClick={() => toggleHideSection('ManageWordsBody')} />
           </Grid>
         </div>
       </Grid>
       {allWordsRaw.length > 0
         ? <Grid item container justify="center" xs={12}>
-          <div id='wordManagerBody' className={styles.wordManager}>
+          <div id='ManageWordsBody' className={styles.manageWords}>
             <Typography
               variant="body1"
               id='wordCountTitle'
@@ -106,5 +106,5 @@ const WordManagerBody = (props: WordManagerBodyProps) => {
   );
 }
 
-export default WordManagerBody;
+export default ManageWordsBody;
 
