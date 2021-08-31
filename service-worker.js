@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Mini-Word-Tool-2/precache-manifest.cd1c0aded70c4075b09a7c84e5b9757e.js"
+  "/Mini-Word-Tool-2/precache-manifest.6b9968978c9090066122cd9ffa10109e.js"
 );
 
 self.addEventListener('message', (event) => {
