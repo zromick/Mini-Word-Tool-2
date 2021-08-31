@@ -1,15 +1,15 @@
 ## Mini Word Tool 2
 
-Main goal: To create a tool that masks the identities of real people or places in a given text without continuous find and replace.
+Hi! Welcome to a passion project of mine. This app is built using TypeScript, React, and Material-UI and is hosted on GitHub Pages.
+
+This app allows for global, one-time replacement of words within a body of text.
 
 Other useful features:
-* Check word count easily.
 * Visualize word frequency by providing every context in which a word appears throughout a text.
 * Identify and change redundant vocabulary.
-* Compare text to the Official Scrabble Players Dictionary. The OSPD is useful because it isolates most proper nouns and spelling errors. (See example below)
+* Isolates proper nouns and spelling errors. (See example below)
 
-## Workflow Example 
-### Mask Identities in a Published Article
+## Workflow Example: Mask Identities in a Published Article
 
 #### 1. Add Input Text:
 
@@ -20,37 +20,29 @@ Other useful features:
 
 #### 3. Click the "+" icon next to each word to create a replacement word.
 
-Word Count - 36 total word(s). 30 unique word(s).
-
-Ignoring: 25 unique word(s)
-
-Replacing: 5 unique word(s)
+**Replacing**
 
 ```
 GERALD...(1)
 
 1. treat infections,” said
-Gerald -> 
-Henry
+Gerald → Henry
 Jang, associate professor
 
 JANG...(2)
 
 1. infections,” said Gerald
-Jang, -> 
-Saltzman
+Jang, → Saltzman,
 associate professor in
 
 2. at Winthrup University.
-Jang -> 
-Saltzman
+Jang → Saltzman
 works with Dr.
 
 WINTHRUP...(1)
 
 1. and Biophysics at
-Winthrup -> 
-Davis
+Winthrup → Davis
 University. Jang works
 
 DR...(1)
@@ -60,12 +52,10 @@ DR...(1)
 CORBELLA...(1)
 
 1. works with Dr.
-Corbella, -> 
-Zimmerman,
+Corbella, → Zimmerman,
 one of the
 
 ```
-
 
 #### 4. Click "Replace Words in Text" to generate output text.
 
