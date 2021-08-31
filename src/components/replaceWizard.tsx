@@ -3,16 +3,15 @@ import { Grid } from '@material-ui/core';
 import { Word } from '../models';
 import Button from '@material-ui/core/Button';
 import ReplaceWizardProgressBar from './replaceWizardProgressBar';
-import styles from './replaceWizard.module.scss';
 import ReplaceWizardSteps from './replaceWizardSteps';
 import TitleBody from './titleBody';
 import IntroductionBody from './introductionBody';
 import InputTextBody from './inputTextBody';
 import ManageWordsBody from './manageWordsBody';
 import GenerateTextBody from './generateTextBody';
+import styles from '../styles.module.scss';
 
 export interface ReplaceWizardProps {
-  toggleHideSection: (id: string) => void,
   sortWords: () => void,
   sortByFrequency: () => void,
   sortAlphabetically: () => void,
@@ -24,6 +23,8 @@ export interface ReplaceWizardProps {
   addReplacementWord: (key: string, replacementWord: string, wordIndeces: number[]) => void,
   updateReplacementWord: (key: string, oldReplacement: string, newReplacement: string) => void,
   setCopied: Dispatch<SetStateAction<boolean>>,
+  setTransferToReplacing: Dispatch<SetStateAction<boolean>>,
+  setTransferToIgnoring: Dispatch<SetStateAction<boolean>>,
   setAutoExcludeOSPD: Dispatch<SetStateAction<boolean>>,
   handleNext: (step: ReplaceWizardSteps) => void;
   handlePrevious: (step: ReplaceWizardSteps) => void;
@@ -35,12 +36,13 @@ export interface ReplaceWizardProps {
   includedWords: Word[],
   allWordsRaw: string[];
   copied: boolean,
+  transferToReplacing: boolean,
+  transferToIgnoring: boolean,
   autoExcludeOSPD: boolean,
 }
 
 const ReplaceWizard = (props: ReplaceWizardProps) => {
   const {
-    toggleHideSection,
     sortWords,
     // sortByFrequency,
     // sortAlphabetically,
@@ -52,6 +54,8 @@ const ReplaceWizard = (props: ReplaceWizardProps) => {
     addReplacementWord,
     updateReplacementWord,
     setCopied,
+    setTransferToReplacing,
+    setTransferToIgnoring,
     setAutoExcludeOSPD,
     handleNext,
     handlePrevious,
@@ -63,6 +67,8 @@ const ReplaceWizard = (props: ReplaceWizardProps) => {
     includedWords,
     allWordsRaw,
     copied,
+    transferToReplacing,
+    transferToIgnoring,
     autoExcludeOSPD,
   } = props;
   return (
@@ -85,14 +91,17 @@ const ReplaceWizard = (props: ReplaceWizardProps) => {
           )}
           {currentStep === ReplaceWizardSteps.MANAGE_WORDS && (
             <ManageWordsBody
-              toggleHideSection={toggleHideSection}
               handleExcludeWord={handleExcludeWord}
               handleIncludeWord={handleIncludeWord}
               addReplacementWord={addReplacementWord}
               updateReplacementWord={updateReplacementWord}
+              setTransferToReplacing={setTransferToReplacing}
+              setTransferToIgnoring={setTransferToIgnoring}
               excludedWords={excludedWords}
               includedWords={includedWords}
               allWordsRaw={allWordsRaw}
+              transferToReplacing={transferToReplacing}
+              transferToIgnoring={transferToIgnoring}
             />
           )}
           {currentStep === ReplaceWizardSteps.GENERATE_TEXT && (
@@ -111,7 +120,7 @@ const ReplaceWizard = (props: ReplaceWizardProps) => {
                 variant="outlined"
                 color="primary"
               >
-                Cancel
+                Start Over
               </Button>
             </div>
             <div className={styles.buttonFlex}>

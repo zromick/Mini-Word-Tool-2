@@ -1,67 +1,95 @@
-import React from 'react';
-import { Grid, Typography } from '@material-ui/core';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDownRounded';
+import React, { Dispatch, SetStateAction } from 'react';
+import { Grid, Typography, IconButton, Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import styles from '../styles.module.scss';
 import WordsWithContext from './wordsWithContext';
+import { Add } from '@material-ui/icons';
 import { Word } from '../models';
 
 export interface ManageWordsBodyProps {
-  toggleHideSection: (id: string) => void,
   handleIncludeWord: (word: Word) => void,
   handleExcludeWord: (word: Word) => void,
   addReplacementWord: (key: string, replacementWord: string, wordIndeces: number[]) => void,
   updateReplacementWord: (key: string, oldReplacement: string, newReplacement: string) => void,
+  setTransferToReplacing: Dispatch<SetStateAction<boolean>>,
+  setTransferToIgnoring: Dispatch<SetStateAction<boolean>>,
   excludedWords: Word[],
   includedWords: Word[],
   allWordsRaw: string[],
+  transferToReplacing: boolean,
+  transferToIgnoring: boolean,
 }
 
 const ManageWordsBody = (props: ManageWordsBodyProps) => {
   const {
-    toggleHideSection,
     handleExcludeWord,
     handleIncludeWord,
     addReplacementWord,
     updateReplacementWord,
+    setTransferToReplacing,
+    setTransferToIgnoring,
     excludedWords,
     includedWords,
     allWordsRaw,
+    transferToReplacing,
+    transferToIgnoring,
   } = props;
   return (
     <Grid item container justify="center" xs={12}>
       <Grid item container justify="center" xs={12}>
         <div className={styles.basicMargin}>
           <Grid container item xs={12}>
-            <Typography variant="h5" onClick={() => toggleHideSection('ManageWordsBody')}>
-              Step 2: Manage Your Words
+            <Typography variant="h5">
+              Manage Words
             </Typography>
-            <ArrowDropDown onClick={() => toggleHideSection('ManageWordsBody')} />
           </Grid>
         </div>
       </Grid>
       {allWordsRaw.length > 0
         ? <Grid item container justify="center" xs={12}>
+          <Grid item xs={12}>
+            <div className={styles.introSpacing}>
+              <Typography variant="body1" >
+                {`Below, you can choose which words within your text to replace.`}
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={12}>
+            <div className={styles.introSpacing}>
+              <Typography variant="body1" >
+                {`If a word is in the "Replacing" list, a blue plus sign`}
+                {<IconButton color="primary"><Add /></IconButton>}
+                {`will appear next to it.`}
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={12}>
+            <div className={styles.introSpacing}>
+              <Typography variant="body1" >
+                {`Click the blue plus sign to add a replacement for all instances of that word. The default is "replacement".`}
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={12}>
+            <div className={styles.introSpacing}>
+              <Typography variant="body1" >
+                The "Ignoring" list will not replace any words in the final step.
+              </Typography>
+            </div>
+          </Grid>
           <div id='ManageWordsBody' className={styles.manageWords}>
-            <Typography
-              variant="body1"
-              id='wordCountTitle'
-            >
-              Word Count - {allWordsRaw.length} total word(s). {excludedWords.length + includedWords.length} unique word(s).
-            </Typography>
             <Grid container item xs={12}>
               <Typography
                 style={{ fontWeight: 600 }}
-                onClick={() => toggleHideSection('excludedWordsBody')}
               >
-                {`Ignoring...`}
+                {`Ignoring`}
               </Typography>
-              <Typography
+              {/* <Typography
                 variant="body1"
                 onClick={() => toggleHideSection('excludedWordsBody')}
               >
                 {`\t ${excludedWords.length} unique word(s)`}
-              </Typography>
-              <ArrowDropDown onClick={() => toggleHideSection('excludedWordsBody')} />
+              </Typography> */}
             </Grid>
             <div id='excludedWordsBody'>
               <WordsWithContext
@@ -76,17 +104,15 @@ const ManageWordsBody = (props: ManageWordsBodyProps) => {
             <Grid container item xs={12}>
               <Typography
                 style={{ fontWeight: 600 }}
-                onClick={() => toggleHideSection('includedWordsBody')}
               >
-                {`Replacing...`}
+                {`Replacing`}
               </Typography>
-              <Typography
+              {/* <Typography
                 variant="body1"
                 onClick={() => toggleHideSection('includedWordsBody')}
               >
                 {includedWords.length} unique word(s)
-              </Typography>
-              <ArrowDropDown onClick={() => toggleHideSection('includedWordsBody')} />
+              </Typography> */}
             </Grid>
             <div id='includedWordsBody'>
               <WordsWithContext
@@ -100,8 +126,27 @@ const ManageWordsBody = (props: ManageWordsBodyProps) => {
             </div>
           </div>
         </Grid>
-        : <></>
+        : <Typography>No words to manage. Please return to the previous screen and add input text.</Typography>
       }
+      <Snackbar
+        open={transferToReplacing}
+        autoHideDuration={10000}
+        onClose={() => setTransferToReplacing(false)}
+      >
+        <Alert severity="success">
+          That word is now in the "Replacing" list.
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={transferToIgnoring}
+        autoHideDuration={10000}
+        onClose={() => setTransferToIgnoring(false)}
+        message={`The word is now in the "Ignoring" list.`}
+      >
+        <Alert severity="success">
+          That word is now in the "Ignoring" list.
+        </Alert>
+      </Snackbar>
     </Grid>
   );
 }

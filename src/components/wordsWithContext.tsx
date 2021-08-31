@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Tooltip, Button, IconButton, Typography } from '@material-ui/core';
+import Pagination from '@material-ui/lab/Pagination';
 import { Add } from '@material-ui/icons';
 import { Word } from '../models';
 import Context from './context';
@@ -23,7 +24,13 @@ const WordsWithContext = (props: WordsWithContextProps) => {
     updateReplacementWord,
     allWordsRaw,
   } = props;
+
+  const [page, setPage] = React.useState(1);
   let wordList: any[] = [];
+
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
 
   words.map((word, wordIndex) => {
     let maxWordLength = 12;
@@ -102,7 +109,14 @@ const WordsWithContext = (props: WordsWithContextProps) => {
 
   return (
     <div>
-      {wordList}
+      <Pagination
+        count={wordList.length}
+        page={page}
+        onChange={handleChange}
+
+        className={styles.paginationMargin}
+      />
+      {wordList[page - 1]}
     </div>
   )
 }

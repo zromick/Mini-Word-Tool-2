@@ -18,7 +18,7 @@ const ImportExportBody = (props: ImportExportBodyProps) => {
         <div className={styles.basicMargin}>
           <Grid container item xs={12}>
             <Typography variant="h5">
-              Step 4: Import/Export
+              Import or Export
             </Typography>
           </Grid>
         </div>

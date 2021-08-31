@@ -8,9 +8,11 @@ const ReplaceWizardContainer = () => {
 	let [excludedWords, updateExcludedWords] = useState([] as Word[]);
 	let [includedWords, updateIncludedWords] = useState([] as Word[]);
 	let [allWordsRaw, updateAllWordsRaw] = useState([] as string[]);
-	let [autoExcludeOSPD, setAutoExcludeOSPD] = useState(false);
+	let [autoExcludeOSPD, setAutoExcludeOSPD] = useState(true);
 	// Paste text and sort words into "Excluded" or "Included"
 	let [copied, setCopied] = useState(false);
+	let [transferToReplacing, setTransferToReplacing] = useState(false);
+	let [transferToIgnoring, setTransferToIgnoring] = useState(false);
 	let [currentStep, setCurrentStep] = useState(0);
 	let [nextDisabled, setNextDisabled] = useState(false);
 	let [previousDisabled, setPreviousDisabled] = useState(true);
@@ -79,16 +81,6 @@ const ReplaceWizardContainer = () => {
 		// console.log(`update`, includedWordsTemp, includedWordIndex, key, oldReplacement, newReplacement);
 	}
 
-	const toggleHideSection = (id: string) => {
-		const gottenElement = document.getElementById(id);
-		if (gottenElement) {
-			let display = gottenElement.style.display;
-			(display === "" || display === "block")
-				? gottenElement.style.display = "none"
-				: gottenElement.style.display = "block";
-		}
-	}
-
 	const handleNext = () => {
 		setCurrentStep(currentStep + 1);
 		if (previousDisabled) {
@@ -116,7 +108,7 @@ const ReplaceWizardContainer = () => {
 		updateExcludedWords([]);
 		updateIncludedWords([]);
 		updateAllWordsRaw([]);
-		setAutoExcludeOSPD(false);
+		setAutoExcludeOSPD(true);
 		setCopied(false);
 	}
 
@@ -142,6 +134,7 @@ const ReplaceWizardContainer = () => {
 		_.pull(excludedWords, word);
 		updateExcludedWords([...excludedWords]);
 		updateIncludedWords([...includedWords]);
+		setTransferToReplacing(true);
 	}
 
 	// Sent into the handleWordListChange prop for wordsWithContext
@@ -150,6 +143,7 @@ const ReplaceWizardContainer = () => {
 		_.pull(includedWords, word);
 		updateExcludedWords([...excludedWords]);
 		updateIncludedWords([...includedWords]);
+		setTransferToIgnoring(true);
 	}
 
 	const replaceAllIncludedWords = () => {
@@ -182,7 +176,6 @@ const ReplaceWizardContainer = () => {
 
 	return (
 		<ReplaceWizard
-			toggleHideSection={toggleHideSection}
 			sortWords={sortWords}
 			sortByFrequency={sortByFrequency}
 			sortAlphabetically={sortAlphabetically}
@@ -194,6 +187,8 @@ const ReplaceWizardContainer = () => {
 			addReplacementWord={addReplacementWord}
 			updateReplacementWord={updateReplacementWord}
 			setCopied={setCopied}
+			setTransferToReplacing={setTransferToReplacing}
+			setTransferToIgnoring={setTransferToIgnoring}
 			setAutoExcludeOSPD={setAutoExcludeOSPD}
 			handleNext={handleNext}
 			handlePrevious={handlePrevious}
@@ -205,6 +200,8 @@ const ReplaceWizardContainer = () => {
 			includedWords={includedWords}
 			allWordsRaw={allWordsRaw}
 			copied={copied}
+			transferToReplacing={transferToReplacing}
+			transferToIgnoring={transferToIgnoring}
 			autoExcludeOSPD={autoExcludeOSPD}
 		/>
 	);
