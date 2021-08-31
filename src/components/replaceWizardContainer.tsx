@@ -89,6 +89,9 @@ const ReplaceWizardContainer = () => {
 		if (currentStep === 2) {
 			setNextDisabled(true);
 		}
+		setCopied(false);
+		setTransferToReplacing(false);
+		setTransferToIgnoring(false);
 	}
 
 	const handlePrevious = () => {
@@ -99,6 +102,9 @@ const ReplaceWizardContainer = () => {
 		if (nextDisabled) {
 			setNextDisabled(false);
 		}
+		setCopied(false);
+		setTransferToReplacing(false);
+		setTransferToIgnoring(false);
 	}
 
 	const handleCancel = () => {
@@ -110,6 +116,8 @@ const ReplaceWizardContainer = () => {
 		updateAllWordsRaw([]);
 		setAutoExcludeOSPD(true);
 		setCopied(false);
+		setTransferToReplacing(false);
+		setTransferToIgnoring(false);
 	}
 
 	const handleImport = () => {
