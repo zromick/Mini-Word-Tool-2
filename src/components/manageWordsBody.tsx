@@ -84,12 +84,6 @@ const ManageWordsBody = (props: ManageWordsBodyProps) => {
               >
                 {`Ignoring`}
               </Typography>
-              {/* <Typography
-                variant="body1"
-                onClick={() => toggleHideSection('excludedWordsBody')}
-              >
-                {`\t ${excludedWords.length} unique word(s)`}
-              </Typography> */}
             </Grid>
             <div id='excludedWordsBody'>
               <WordsWithContext
@@ -107,12 +101,6 @@ const ManageWordsBody = (props: ManageWordsBodyProps) => {
               >
                 {`Replacing`}
               </Typography>
-              {/* <Typography
-                variant="body1"
-                onClick={() => toggleHideSection('includedWordsBody')}
-              >
-                {includedWords.length} unique word(s)
-              </Typography> */}
             </Grid>
             <div id='includedWordsBody'>
               <WordsWithContext

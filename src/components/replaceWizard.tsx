@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Paper } from '@material-ui/core';
 import { Word } from '../models';
 import Button from '@material-ui/core/Button';
 import ReplaceWizardProgressBar from './replaceWizardProgressBar';
@@ -73,44 +73,54 @@ const ReplaceWizard = (props: ReplaceWizardProps) => {
   } = props;
   return (
     <div>
-      <TitleBody />
-      <div className={styles.progressBar}>
-        <ReplaceWizardProgressBar step={currentStep} />
-      </div>
+      {/* <AppBar position="absolute" color="primary">
+        <Toolbar>
+          <Typography variant="h6" color="inherit" noWrap>
+            Company name
+          </Typography>
+        </Toolbar>
+      </AppBar> */}
+
       <Grid className={styles.components} container spacing={3}>
         <Grid item xs={10}>
-          {currentStep === ReplaceWizardSteps.INTRODUCTION && (
-            <IntroductionBody />
-          )}
-          {currentStep === ReplaceWizardSteps.INPUT_TEXT && (
-            <InputTextBody
-              sortWords={sortWords}
-              setAutoExcludeOSPD={setAutoExcludeOSPD}
-              autoExcludeOSPD={autoExcludeOSPD}
-            />
-          )}
-          {currentStep === ReplaceWizardSteps.MANAGE_WORDS && (
-            <ManageWordsBody
-              handleExcludeWord={handleExcludeWord}
-              handleIncludeWord={handleIncludeWord}
-              addReplacementWord={addReplacementWord}
-              updateReplacementWord={updateReplacementWord}
-              setTransferToReplacing={setTransferToReplacing}
-              setTransferToIgnoring={setTransferToIgnoring}
-              excludedWords={excludedWords}
-              includedWords={includedWords}
-              allWordsRaw={allWordsRaw}
-              transferToReplacing={transferToReplacing}
-              transferToIgnoring={transferToIgnoring}
-            />
-          )}
-          {currentStep === ReplaceWizardSteps.GENERATE_TEXT && (
-            <GenerateTextBody
-              replaceAllIncludedWords={replaceAllIncludedWords}
-              setCopied={setCopied}
-              copied={copied}
-            />
-          )}
+          <Paper elevation={2} className={styles.paper}>
+            <TitleBody />
+            <div className={styles.progressBar}>
+              <ReplaceWizardProgressBar step={currentStep} />
+            </div>
+            {currentStep === ReplaceWizardSteps.INTRODUCTION && (
+              <IntroductionBody />
+            )}
+            {currentStep === ReplaceWizardSteps.INPUT_TEXT && (
+              <InputTextBody
+                sortWords={sortWords}
+                setAutoExcludeOSPD={setAutoExcludeOSPD}
+                autoExcludeOSPD={autoExcludeOSPD}
+              />
+            )}
+            {currentStep === ReplaceWizardSteps.MANAGE_WORDS && (
+              <ManageWordsBody
+                handleExcludeWord={handleExcludeWord}
+                handleIncludeWord={handleIncludeWord}
+                addReplacementWord={addReplacementWord}
+                updateReplacementWord={updateReplacementWord}
+                setTransferToReplacing={setTransferToReplacing}
+                setTransferToIgnoring={setTransferToIgnoring}
+                excludedWords={excludedWords}
+                includedWords={includedWords}
+                allWordsRaw={allWordsRaw}
+                transferToReplacing={transferToReplacing}
+                transferToIgnoring={transferToIgnoring}
+              />
+            )}
+            {currentStep === ReplaceWizardSteps.GENERATE_TEXT && (
+              <GenerateTextBody
+                replaceAllIncludedWords={replaceAllIncludedWords}
+                setCopied={setCopied}
+                copied={copied}
+              />
+            )}
+          </Paper>
         </Grid>
         <Grid item xs={10}>
           <div className={styles.cancelButton}>

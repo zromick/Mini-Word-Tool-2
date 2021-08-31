@@ -113,8 +113,9 @@ const WordsWithContext = (props: WordsWithContextProps) => {
         count={wordList.length}
         page={page}
         onChange={handleChange}
-
         className={styles.paginationMargin}
+        color="primary"
+        variant="outlined"
       />
       {wordList[page - 1]}
     </div>
