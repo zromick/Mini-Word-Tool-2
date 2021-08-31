@@ -1,7 +1,6 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import { Typography, Input } from '@material-ui/core';
 import _ from 'lodash';
-import { Input } from '@material-ui/core';
 
 export interface ContextProps {
   wordCleaned: string,
@@ -38,7 +37,7 @@ const Context = (props: ContextProps) => {
       contextList.push(
         <Typography key={'key' + indexThatWordAppears} style={{ wordBreak: 'break-all' }}>
           {(replacementWord !== null && mappingIndex === 0)
-            ? <div>{`${wordCleaned} -> `}
+            ? <div>{`${wordCleaned} → `}
               <Input
                 color="primary"
                 defaultValue={replacementWord}
