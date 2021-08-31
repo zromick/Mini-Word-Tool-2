@@ -86,7 +86,7 @@ const GenerateTextBody = (props: GenerateTextBodyProps) => {
           onClose={() => setCopied(false)}
         >
           <Alert severity="success">
-            The new text has been copied to clipboard!"
+            The new text has been copied to clipboard!
           </Alert>
         </Snackbar>
       </Grid>
