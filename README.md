@@ -11,6 +11,15 @@ Other useful features:
 
 ## Workflow Example: Mask Identities in a Published Article
 
+Changing names from this excerpt:
+
+"It's the best way to treat infections,” said *Gerald Jang*, associate professor in the Department of Biochemistry and Biophysics at *Winthrup* University. *Jang* works with Dr. *Corbella*, one of the principal investigators in the research study.
+
+To:
+
+"It's the best way to treat infections,” said *Henry Williams*, associate professor in the Department of Biochemistry and Biophysics at *Darnell* University. *Williams* works with Dr. *Diamond*, one of the principal investigators in the research study.
+
+
 #### 1. Add Input Text. Check the box next to "Automatically Ignore Words in the Official Scrabble Player's Dictionary."
 
 ![Input Text Example](public/images/inputText-1.png "Input Text")
