@@ -1,3 +1,9 @@
+export interface SnackbarModel {
+  open: boolean,
+  severity: 'error' | 'info' | 'success' | 'warning',
+  message: string,
+}
+
 export interface Word {
   [word: string]: Replacement
 }

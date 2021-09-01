@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReplaceWizard from './replaceWizard';
 import { ospd, wikiContractions } from '../commonWords'; // Official Scrabble Player's Dictionary
 import _ from 'lodash';
-import { Word } from '../models';
+import { Word, SnackbarModel } from '../models';
 
 const ReplaceWizardContainer = () => {
 	let [excludedWords, updateExcludedWords] = useState([] as Word[]);
@@ -13,6 +13,7 @@ const ReplaceWizardContainer = () => {
 	let [copied, setCopied] = useState(false);
 	let [transferToReplacing, setTransferToReplacing] = useState(false);
 	let [transferToIgnoring, setTransferToIgnoring] = useState(false);
+	let [snackbar, setSnackbar] = useState<SnackbarModel>({ open: false, message: '', severity: 'success' });
 	let [currentStep, setCurrentStep] = useState(0);
 	let [nextDisabled, setNextDisabled] = useState(false);
 	let [previousDisabled, setPreviousDisabled] = useState(true);
@@ -89,6 +90,7 @@ const ReplaceWizardContainer = () => {
 		if (currentStep === 2) {
 			setNextDisabled(true);
 		}
+		setSnackbar({ open: false, message: '', severity: 'success' })
 		setCopied(false);
 		setTransferToReplacing(false);
 		setTransferToIgnoring(false);
@@ -102,6 +104,7 @@ const ReplaceWizardContainer = () => {
 		if (nextDisabled) {
 			setNextDisabled(false);
 		}
+		setSnackbar({ open: false, message: '', severity: 'success' })
 		setCopied(false);
 		setTransferToReplacing(false);
 		setTransferToIgnoring(false);
@@ -115,6 +118,7 @@ const ReplaceWizardContainer = () => {
 		updateIncludedWords([]);
 		updateAllWordsRaw([]);
 		setAutoExcludeOSPD(true);
+		setSnackbar({ open: false, message: '', severity: 'success' })
 		setCopied(false);
 		setTransferToReplacing(false);
 		setTransferToIgnoring(false);
@@ -142,7 +146,7 @@ const ReplaceWizardContainer = () => {
 		_.pull(excludedWords, word);
 		updateExcludedWords([...excludedWords]);
 		updateIncludedWords([...includedWords]);
-		setTransferToReplacing(true);
+		// setTransferToReplacing(true);
 	}
 
 	// Sent into the handleWordListChange prop for wordsWithContext
@@ -151,7 +155,7 @@ const ReplaceWizardContainer = () => {
 		_.pull(includedWords, word);
 		updateExcludedWords([...excludedWords]);
 		updateIncludedWords([...includedWords]);
-		setTransferToIgnoring(true);
+		// setTransferToIgnoring(true);
 	}
 
 	const replaceAllIncludedWords = () => {
@@ -197,6 +201,7 @@ const ReplaceWizardContainer = () => {
 			setCopied={setCopied}
 			setTransferToReplacing={setTransferToReplacing}
 			setTransferToIgnoring={setTransferToIgnoring}
+			setSnackbar={setSnackbar}
 			setAutoExcludeOSPD={setAutoExcludeOSPD}
 			handleNext={handleNext}
 			handlePrevious={handlePrevious}
@@ -210,6 +215,7 @@ const ReplaceWizardContainer = () => {
 			copied={copied}
 			transferToReplacing={transferToReplacing}
 			transferToIgnoring={transferToIgnoring}
+			snackbar={snackbar}
 			autoExcludeOSPD={autoExcludeOSPD}
 		/>
 	);

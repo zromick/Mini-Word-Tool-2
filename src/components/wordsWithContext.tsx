@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Grid, Tooltip, Button, IconButton, Typography } from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination';
 import { Add } from '@material-ui/icons';
 import { Word } from '../models';
 import Context from './context';
+import { SnackbarModel } from '../models';
 import styles from '../styles.module.scss';
 
 export interface WordsWithContextProps {
@@ -13,6 +14,7 @@ export interface WordsWithContextProps {
   handleWordListChange: (word: Word) => void,
   addReplacementWord: (key: string, replacementWord: string, wordIndeces: number[]) => void,
   updateReplacementWord: (key: string, oldReplacement: string, newReplacement: string) => void,
+  setSnackbar: Dispatch<SetStateAction<SnackbarModel>>,
 }
 
 const WordsWithContext = (props: WordsWithContextProps) => {
@@ -22,6 +24,7 @@ const WordsWithContext = (props: WordsWithContextProps) => {
     handleWordListChange,
     addReplacementWord,
     updateReplacementWord,
+    setSnackbar,
     allWordsRaw,
   } = props;
 
@@ -86,7 +89,14 @@ const WordsWithContext = (props: WordsWithContextProps) => {
                 <Button
                   fullWidth
                   variant="outlined"
-                  onClick={() => handleWordListChange(word)}
+                  onClick={() => {
+                    handleWordListChange(word);
+                    if (wordsAreExcluded) {
+                      setSnackbar({ open: true, message: `'${Object.keys(word)[0]}' has been moved to the "Replacing" list.`, severity: 'success' });
+                    } else {
+                      setSnackbar({ open: true, message: `'${Object.keys(word)[0]}' has been moved to the "Ignoring" list.`, severity: 'success' });
+                    }
+                  }}
                 >
                   {wordsAreExcluded
                     ? `Replace '${wordCleaned.length > maxButtonWordLength

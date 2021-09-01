@@ -6,6 +6,13 @@ html {
   margin-top: 15px;
   margin-bottom: 15px;
   padding: 30px;
+  max-width: 800px;
+  min-width: 800px;
+}
+
+.buttonBox {
+  max-width: 860px;
+  min-width: 860px;
 }
 
 .progressBar {
@@ -22,14 +29,22 @@ html {
   align-items: flex-start;
 }
 
-.cancelButton {
-  display: flex;
-  justify-content: space-between;
+.maxWidth {
+  max-width: 800px;
 }
 
-.buttonFlex {
-  display: flex;
-  justify-content: flex-end;
+// .cancelButton {
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+// .buttonFlex {
+//   display: flex;
+//   justify-content: flex-end;
+// }
+
+.buttonWidth {
+  width: 200px;
 }
 
 .buttonMargin {

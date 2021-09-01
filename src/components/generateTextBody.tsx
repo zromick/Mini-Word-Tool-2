@@ -4,22 +4,21 @@ import {
   Typography,
   Button,
   TextareaAutosize,
-  Snackbar
 } from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
+import { SnackbarModel } from '../models';
 import styles from '../styles.module.scss';
 
 export interface GenerateTextBodyProps {
   replaceAllIncludedWords: () => void,
   setCopied: Dispatch<SetStateAction<boolean>>,
+  setSnackbar: Dispatch<SetStateAction<SnackbarModel>>,
   copied: boolean,
 }
 
 const GenerateTextBody = (props: GenerateTextBodyProps) => {
   const {
     replaceAllIncludedWords,
-    setCopied,
-    copied,
+    setSnackbar,
   } = props;
   return (
     <Grid item container justify="center" xs={12}>
@@ -55,12 +54,15 @@ const GenerateTextBody = (props: GenerateTextBodyProps) => {
             rowsMin={8}
           />
         </Grid>
-        <Grid item container justify="space-around" xs={12}>
+        <Grid item container justify="space-between" xs={12}>
           <div className={styles.introMargin}>
             <Button
               color="primary"
               variant="contained"
-              onClick={() => replaceAllIncludedWords()}
+              onClick={() => {
+                replaceAllIncludedWords();
+                setSnackbar({ open: true, message: `Your input text has been replaced above!`, severity: 'success' });
+              }}
             >
               Replace
             </Button>
@@ -72,23 +74,14 @@ const GenerateTextBody = (props: GenerateTextBodyProps) => {
               onClick={() => {
                 const finalTextArea = document.getElementById('finalTextArea') as HTMLTextAreaElement;;
                 navigator.clipboard.writeText(finalTextArea.value);
-                setCopied(true);
+                // setCopied(true);
+                setSnackbar({ open: true, message: `The generated text has been copied to clipboard!`, severity: 'success' });
               }}
             >
               Copy
             </Button>
           </div>
-
         </Grid>
-        <Snackbar
-          open={copied}
-          autoHideDuration={10000}
-          onClose={() => setCopied(false)}
-        >
-          <Alert severity="success">
-            The new text has been copied to clipboard!
-          </Alert>
-        </Snackbar>
       </Grid>
     </Grid>
   );

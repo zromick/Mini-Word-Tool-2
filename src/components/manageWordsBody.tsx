@@ -1,10 +1,9 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import { Grid, Typography, IconButton, Snackbar } from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
-import styles from '../styles.module.scss';
+import { Grid, Typography, IconButton } from '@material-ui/core';
 import WordsWithContext from './wordsWithContext';
 import { Add } from '@material-ui/icons';
-import { Word } from '../models';
+import { Word, SnackbarModel } from '../models';
+import styles from '../styles.module.scss';
 
 export interface ManageWordsBodyProps {
   handleIncludeWord: (word: Word) => void,
@@ -13,6 +12,7 @@ export interface ManageWordsBodyProps {
   updateReplacementWord: (key: string, oldReplacement: string, newReplacement: string) => void,
   setTransferToReplacing: Dispatch<SetStateAction<boolean>>,
   setTransferToIgnoring: Dispatch<SetStateAction<boolean>>,
+  setSnackbar: Dispatch<SetStateAction<SnackbarModel>>,
   excludedWords: Word[],
   includedWords: Word[],
   allWordsRaw: string[],
@@ -26,13 +26,10 @@ const ManageWordsBody = (props: ManageWordsBodyProps) => {
     handleIncludeWord,
     addReplacementWord,
     updateReplacementWord,
-    setTransferToReplacing,
-    setTransferToIgnoring,
+    setSnackbar,
     excludedWords,
     includedWords,
-    allWordsRaw,
-    transferToReplacing,
-    transferToIgnoring,
+    allWordsRaw
   } = props;
   return (
     <Grid item container justify="center" xs={12}>
@@ -93,6 +90,7 @@ const ManageWordsBody = (props: ManageWordsBodyProps) => {
                 handleWordListChange={handleIncludeWord}
                 addReplacementWord={addReplacementWord}
                 updateReplacementWord={updateReplacementWord}
+                setSnackbar={setSnackbar}
               />
             </div>
             <Grid container item xs={12}>
@@ -110,31 +108,13 @@ const ManageWordsBody = (props: ManageWordsBodyProps) => {
                 handleWordListChange={handleExcludeWord}
                 addReplacementWord={addReplacementWord}
                 updateReplacementWord={updateReplacementWord}
+                setSnackbar={setSnackbar}
               />
             </div>
           </div>
         </Grid>
         : <Typography>No words to manage. Please return to the previous screen and add input text.</Typography>
       }
-      <Snackbar
-        open={transferToReplacing}
-        autoHideDuration={10000}
-        onClose={() => setTransferToReplacing(false)}
-      >
-        <Alert severity="success">
-          That word is now in the "Replacing" list.
-        </Alert>
-      </Snackbar>
-      <Snackbar
-        open={transferToIgnoring}
-        autoHideDuration={10000}
-        onClose={() => setTransferToIgnoring(false)}
-        message={`The word is now in the "Ignoring" list.`}
-      >
-        <Alert severity="success">
-          That word is now in the "Ignoring" list.
-        </Alert>
-      </Snackbar>
     </Grid>
   );
 }
