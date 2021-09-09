@@ -25,9 +25,9 @@ const ReplaceWizardContainer = () => {
 		let defaultExcludedWords = ospd().concat(wikiContractions().map(contraction => contraction.toUpperCase()));
 		if (userTextArea) {
 			// Split all user text into an array when hitting white space, line breaks, and dashes.
-			// Filter out blank strings.
+			// Filter out blank strings with .filter(i => i) or ^$. Actually unsure if this does anything, but ^$ should be O(n) faster.
 			// Split on this if you want dashes out: (/\s+|-). Example: tip-top becomes tip and top
-			allWordsRaw = userTextArea.value.split(/\s+/).filter(i => i);
+			allWordsRaw = userTextArea.value.split(/\s+|^$/);
 			allWordsRaw.map((word, wordIndex) => {
 				// Rename keys to uppercase and without punctuation (except apostrophes)
 				let key = word.replace(/[^\w\s']/g, "").toUpperCase();
