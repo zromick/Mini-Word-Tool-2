@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Mini-Word-Tool-2/static/css/main.03ecf081.chunk.css",
-    "main.js": "/Mini-Word-Tool-2/static/js/main.801e0b8b.chunk.js",
-    "main.js.map": "/Mini-Word-Tool-2/static/js/main.801e0b8b.chunk.js.map",
+    "main.css": "/Mini-Word-Tool-2/static/css/main.87521676.chunk.css",
+    "main.js": "/Mini-Word-Tool-2/static/js/main.e22242e6.chunk.js",
+    "main.js.map": "/Mini-Word-Tool-2/static/js/main.e22242e6.chunk.js.map",
     "runtime-main.js": "/Mini-Word-Tool-2/static/js/runtime-main.dcecc76d.js",
     "runtime-main.js.map": "/Mini-Word-Tool-2/static/js/runtime-main.dcecc76d.js.map",
     "static/js/2.9c06f979.chunk.js": "/Mini-Word-Tool-2/static/js/2.9c06f979.chunk.js",
     "static/js/2.9c06f979.chunk.js.map": "/Mini-Word-Tool-2/static/js/2.9c06f979.chunk.js.map",
     "index.html": "/Mini-Word-Tool-2/index.html",
-    "precache-manifest.61a802dc14cf1952a9ef591d28451560.js": "/Mini-Word-Tool-2/precache-manifest.61a802dc14cf1952a9ef591d28451560.js",
+    "precache-manifest.894bde7abc68850aa8ff8d13c1e906fc.js": "/Mini-Word-Tool-2/precache-manifest.894bde7abc68850aa8ff8d13c1e906fc.js",
     "service-worker.js": "/Mini-Word-Tool-2/service-worker.js",
-    "static/css/main.03ecf081.chunk.css.map": "/Mini-Word-Tool-2/static/css/main.03ecf081.chunk.css.map",
+    "static/css/main.87521676.chunk.css.map": "/Mini-Word-Tool-2/static/css/main.87521676.chunk.css.map",
     "static/js/2.9c06f979.chunk.js.LICENSE.txt": "/Mini-Word-Tool-2/static/js/2.9c06f979.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.dcecc76d.js",
     "static/js/2.9c06f979.chunk.js",
-    "static/css/main.03ecf081.chunk.css",
-    "static/js/main.801e0b8b.chunk.js"
+    "static/css/main.87521676.chunk.css",
+    "static/js/main.e22242e6.chunk.js"
   ]
 }
