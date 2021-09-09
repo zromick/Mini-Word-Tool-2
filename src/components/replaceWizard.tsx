@@ -129,7 +129,7 @@ const ReplaceWizard = (props: ReplaceWizardProps) => {
                 <Grid item>
                   <Button
                     onClick={() => handleCancel()}
-                    variant="outlined"
+                    variant="contained"
                     color="primary"
                   >
                     Start Over
